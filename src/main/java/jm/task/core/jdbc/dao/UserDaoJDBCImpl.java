@@ -24,7 +24,7 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void dropUsersTable() {
-        String sql = "DROP TABLE IF EXISTS USERS";
+        String sql = "DROP TABLE IF EXISTS users";
         try (Statement statement = connection.createStatement()) {
             statement.executeUpdate(sql);
         } catch (SQLException e) {
@@ -33,7 +33,7 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void saveUser(String name, String lastName, byte age) {
-        String sql = "INSERT INTO USERS (name, last_name, age) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO users (name, last_name, age) VALUES (?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setString(1, name);
@@ -49,7 +49,7 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void removeUserById(long id) {
-        String sql = "DELETE FROM USERS WHERE id = ?";
+        String sql = "DELETE FROM users WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setLong(1, id);
@@ -64,7 +64,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
-        String sql = "SELECT * FROM USERS";
+        String sql = "SELECT * FROM users";
 
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)) {
@@ -85,7 +85,7 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void cleanUsersTable() {
-        String sql = "TRUNCATE TABLE USERS";
+        String sql = "TRUNCATE TABLE users";
 
         try (Statement statement = connection.createStatement()) {
 
